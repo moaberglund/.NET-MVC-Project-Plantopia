@@ -37,7 +37,9 @@
                 @Html.DisplayFor(modelItem => item.Content)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ImageName)
+                <a href="images/@Html.DisplayFor(modelItem => item.ImageName)">
+                <img style="width: 100px; height: auto; border-radius: 20%;" src="images/@Html.DisplayFor(modelItem => item.ImageName)" alt="">
+                </a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CreatedBy)
