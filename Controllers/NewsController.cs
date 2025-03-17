@@ -54,11 +54,15 @@ namespace Plantopia.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Content,ImageName,CreatedBy")] NewsModel newsModel)
+        public async Task<IActionResult> Create([Bind("Id,Title,Content,ImageName")] NewsModel newsModel)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(newsModel);
+
+                // Add the current user as the creator of the news
+                newsModel.CreatedBy = User.Identity?.Name ?? "Unknown";
+
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -86,7 +90,7 @@ namespace Plantopia.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Content,ImageName,CreatedBy")] NewsModel newsModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Content,ImageName")] NewsModel newsModel)
         {
             if (id != newsModel.Id)
             {
@@ -98,6 +102,10 @@ namespace Plantopia.Controllers
                 try
                 {
                     _context.Update(newsModel);
+
+                    // Add the current user as the creator of the news
+                    newsModel.CreatedBy = User.Identity?.Name ?? "Unknown";
+
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
