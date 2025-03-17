@@ -81,6 +81,8 @@ namespace Plantopia.Controllers
                         await newsModel.ImageFile.CopyToAsync(fileStream);
                     }
                 
+                } else {
+                    newsModel.ImageName = "default.jpg";
                 }
                 _context.Add(newsModel);
 
