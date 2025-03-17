@@ -3,6 +3,11 @@
 ##
 ## Get latest from `dotnet new gitignore`
 
+# Db 
+Plantopia.db-shm
+Plantopia.db-wal
+Plantopia.db
+
 # dotenv files
 .env
 
