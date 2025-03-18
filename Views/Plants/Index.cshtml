@@ -9,63 +9,47 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PotSize)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PlantHight)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Amount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageName)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
+@foreach (var item in Model)
+{
+    <article>
+
+        <div>
+            <div>
+                <a href="images/@Html.DisplayFor(modelItem => item.ImageName)">
+                    <img style="width: 100px; height: auto; border-radius: 20%;"
+                        src="images/@Html.DisplayFor(modelItem => item.ImageName)" alt="">
+                </a>
+            </div>
+        </div>
+
+        <div>
+            <h1>
                 @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
+            </h1>
+            <h2>
+                @Html.DisplayFor(modelItem => item.Price) €
+            </h2>
+            <p>
                 @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PotSize)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PlantHight)
-            </td>
-            <td>
+            </p>
+            <p>
+                @Html.DisplayFor(modelItem => item.PotSize) cm
+            </p>
+            <p>
+                @Html.DisplayFor(modelItem => item.PlantHight) cm
+            </p>
+            <p>
                 @Html.DisplayFor(modelItem => item.Amount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageName)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+            </p>
+
+            <div>
+                <div>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </div>
+            </div>
+
+        </div>
+    </article>
 }
-    </tbody>
-</table>
