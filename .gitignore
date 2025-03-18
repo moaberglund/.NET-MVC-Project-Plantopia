@@ -8,6 +8,9 @@ Plantopia.db-shm
 Plantopia.db-wal
 Plantopia.db
 
+# imgages
+images/
+
 # dotenv files
 .env
 
