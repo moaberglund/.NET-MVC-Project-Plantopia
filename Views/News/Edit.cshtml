@@ -6,7 +6,6 @@
 
 <h1>Edit</h1>
 
-<h4>NewsModel</h4>
 <hr />
 <div class="row">
     <div class="col-md-8">
@@ -14,30 +13,30 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
+                <label style="margin-top:1em" asp-for="Title" class="control-label"></label>
                 <input asp-for="Title" class="form-control" />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Content" class="control-label"></label>
+                <label style="margin-top:1em" asp-for="Content" class="control-label"></label>
                 <textarea asp-for="Content" class="form-control" rows="5"></textarea>
                 <span asp-validation-for="Content" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ImageFile" class="control-label"></label>
+                <label style="margin-top:1em" asp-for="ImageFile" class="control-label"></label>
                 <input asp-for="ImageFile" class="form-control" accept="image/*" />
                 <span asp-validation-for="ImageFile" class="text-danger"></span>
             </div>
             @if (!string.IsNullOrEmpty(Model.ImageName))
             {
-                <div class="form-group">
+                <div style="margin:1em 0" class="form-group">
                     <label class="control-label">Current Image</label>
                     <img src="~/images/@Model.ImageName" style="width:100px" />
                     <input type="hidden" asp-for="ImageName" />
                 </div>
             }
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+            <div style="margin:2em 0"  class="form-group">
+                <input type="submit" value="Save changes" class="button" />
             </div>
         </form>
     </div>
