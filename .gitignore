@@ -11,6 +11,9 @@ Plantopia.db
 # imgages
 images/
 
+# migrations
+Migrations/
+
 # dotenv files
 .env
 
