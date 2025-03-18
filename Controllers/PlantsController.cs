@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -54,6 +55,7 @@ namespace Plantopia.Controllers
         }
 
         // POST: Plants/Create
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Price,Description,PotSize,PlantHight,Amount,ImageFile")] PlantModel plantModel)
@@ -91,6 +93,7 @@ namespace Plantopia.Controllers
         }
 
         // GET: Plants/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -107,6 +110,7 @@ namespace Plantopia.Controllers
         }
 
         // POST: Plants/Edit/5
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,Description,PotSize,PlantHight,Amount,ImageFile")] PlantModel plantModel)
@@ -176,6 +180,7 @@ namespace Plantopia.Controllers
         }
 
         // GET: Plants/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -194,6 +199,7 @@ namespace Plantopia.Controllers
         }
 
         // POST: Plants/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
