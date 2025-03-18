@@ -56,8 +56,6 @@ namespace Plantopia.Controllers
         }
 
         // POST: News/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -74,7 +72,7 @@ namespace Plantopia.Controllers
                     string extension = Path.GetExtension(newsModel.ImageFile.FileName);
 
                     newsModel.ImageName = fileName = fileName.Replace(" ", String.Empty) + DateTime.Now.ToString("yymmssfff") + extension;
-                
+
                     // Save the image to the wwwroot/images/news folder
                     string path = Path.Combine(wwwRootPath + "/images", fileName);
 
@@ -83,8 +81,10 @@ namespace Plantopia.Controllers
                     {
                         await newsModel.ImageFile.CopyToAsync(fileStream);
                     }
-                
-                } else {
+
+                }
+                else
+                {
                     newsModel.ImageName = "default.jpg";
                 }
                 _context.Add(newsModel);
@@ -116,12 +116,10 @@ namespace Plantopia.Controllers
         }
 
         // POST: News/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Content,ImageName")] NewsModel newsModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Content,ImageName,ImageFile")] NewsModel newsModel)
         {
             if (id != newsModel.Id)
             {
@@ -132,9 +130,45 @@ namespace Plantopia.Controllers
             {
                 try
                 {
+                    // Fetch the existing news item to get the image name 
+                    var existingNews = await _context.News.AsNoTracking().FirstOrDefaultAsync(n => n.Id == id);
+
+                    // Keep the existing image if no new image is uploaded
+                    if (newsModel.ImageFile == null)
+                    {
+                        newsModel.ImageName = existingNews?.ImageName;
+                    }
+                    else
+                    {
+                        // If a new image is uploaded, delete the old image if it's not the default image
+                        if (existingNews?.ImageName != "default.jpg" && existingNews?.ImageName != null)
+                        {
+                            var oldImagePath = Path.Combine(wwwRootPath + "/images", existingNews.ImageName);
+                            if (System.IO.File.Exists(oldImagePath))
+                            {
+                                System.IO.File.Delete(oldImagePath);
+                            }
+                        }
+
+                        // Generate a unique filename
+                        string fileName = Path.GetFileNameWithoutExtension(newsModel.ImageFile.FileName);
+                        string extension = Path.GetExtension(newsModel.ImageFile.FileName);
+
+                        newsModel.ImageName = fileName = fileName.Replace(" ", String.Empty) + DateTime.Now.ToString("yymmssfff") + extension;
+
+                        // Save in wwwroot/images
+                        string path = Path.Combine(wwwRootPath + "/images", fileName);
+
+                        // Save in file system
+                        using (var fileStream = new FileStream(path, FileMode.Create))
+                        {
+                            await newsModel.ImageFile.CopyToAsync(fileStream);
+                        }
+                    }
+
                     _context.Update(newsModel);
 
-                    // Add the current user as the creator of the news
+                    // Add the current user as the editor of the news
                     newsModel.CreatedBy = User.Identity?.Name ?? "Unknown";
 
                     await _context.SaveChangesAsync();
