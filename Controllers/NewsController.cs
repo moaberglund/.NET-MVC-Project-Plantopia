@@ -27,6 +27,8 @@ namespace Plantopia.Controllers
         // GET: News
         public async Task<IActionResult> Index()
         {
+            // Order the news by the date they were created
+            var news = _context.News.OrderByDescending(n => n.CreatedAt).ToList();
             return View(await _context.News.ToListAsync());
         }
 
