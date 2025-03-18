@@ -1,4 +1,6 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -18,3 +20,16 @@
 <div style="text-align: center;">
     <h2>Plants are cheaper than therapy.</h2>
 </div>
+
+@{
+    var user = await UserManager.GetUserAsync(User);
+
+    if(user != null && user.FirstName != null && user.LastName != null)
+    {
+        var firstName = user.FirstName;
+        var lastName = user.LastName;
+        <div class="text-center">
+            <p>Hi there @firstName @lastName!</p>
+        </div>
+    }
+}
