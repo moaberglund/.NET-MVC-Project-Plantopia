@@ -4,19 +4,19 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Our Plants</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
 @foreach (var item in Model)
 {
-    <article>
+    <article style="display: flex; gap: 2em; margin-bottom: 20px; padding: 2em; background-color:#EFEFEF;">
 
         <div>
             <div>
                 <a href="images/@Html.DisplayFor(modelItem => item.ImageName)">
-                    <img style="width: 100px; height: auto; border-radius: 20%;"
+                    <img style="width: 300px; height: auto; border-radius: 20px;"
                         src="images/@Html.DisplayFor(modelItem => item.ImageName)" alt="">
                 </a>
             </div>
@@ -33,13 +33,13 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </p>
             <p>
-                @Html.DisplayFor(modelItem => item.PotSize) cm
+                <strong> Pot size:</strong> @Html.DisplayFor(modelItem => item.PotSize) cm
             </p>
             <p>
-                @Html.DisplayFor(modelItem => item.PlantHight) cm
+                <strong> Plant height: </strong>@Html.DisplayFor(modelItem => item.PlantHight) cm
             </p>
             <p>
-                @Html.DisplayFor(modelItem => item.Amount)
+                <strong> Amount in store: </strong>@Html.DisplayFor(modelItem => item.Amount) plants
             </p>
 
             <div>
