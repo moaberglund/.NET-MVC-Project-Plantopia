@@ -17,8 +17,10 @@ public class PlantModel
     [Required]
     public string? Description { get; set; }
 
+    [Display(Name = "Pot Size")]
     public int? PotSize { get; set; }
 
+    [Display(Name = "Plant Hight")]
     public int? PlantHight { get; set; }
 
     public int? Amount { get; set; }
