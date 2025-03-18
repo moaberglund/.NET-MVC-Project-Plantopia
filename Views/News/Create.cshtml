@@ -6,28 +6,28 @@
 
 <h1>Create</h1>
 
-<h4>NewsModel</h4>
+<h4>Add a new News article:</h4>
 <hr />
 <div class="row">
     <div class="col-md-8">
         <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
+                <label style="margin-top:1em" asp-for="Title" class="control-label"></label>
                 <input asp-for="Title" class="form-control" />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Content" class="control-label"></label>
+                <label style="margin-top:1em" asp-for="Content" class="control-label"></label>
                 <textarea asp-for="Content" class="form-control" rows="5"></textarea>
                 <span asp-validation-for="Content" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ImageFile" class="control-label"></label>
+                <label style="margin-top:1em" asp-for="ImageFile" class="control-label"></label>
                 <input asp-for="ImageFile" class="form-control" accept="image/*" />
                 <span asp-validation-for="ImageFile" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div style="margin:2em 0" class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
