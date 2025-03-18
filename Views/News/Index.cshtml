@@ -4,33 +4,41 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Latest News</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
 
-@foreach (var item in Model) {
-        <article>
+@foreach (var item in Model)
+{
+    <article style="display: flex; gap: 2em; padding:2em; margin-bottom:2em; background-color:#EFEFEF;">
+
+        <div>
+            <a href="images/@Html.DisplayFor(modelItem => item.ImageName)">
+                <img style="width: 300px; height: auto; border-radius: 5px;"
+                    src="images/@Html.DisplayFor(modelItem => item.ImageName)" alt="">
+            </a>
+        </div>
+
+        <div>
             <h1>
                 @Html.DisplayFor(modelItem => item.Title)
             </h1>
             <p>
                 @Html.DisplayFor(modelItem => item.Content)
             </p>
+
             <div>
-                <a href="images/@Html.DisplayFor(modelItem => item.ImageName)">
-                <img style="width: 100px; height: auto; border-radius: 20%;" src="images/@Html.DisplayFor(modelItem => item.ImageName)" alt="">
-                </a>
-            </div>
-            <p>
-                @Html.DisplayFor(modelItem => item.CreatedBy)
-            </p>
-            <div>
+                <p>
+                    Greetings from @Html.DisplayFor(modelItem => item.CreatedBy)
+                </p>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </div>
-        </article>
-}
+        </div>
 
+
+    </article>
+}
