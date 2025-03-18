@@ -26,13 +26,13 @@
                 @Html.DisplayFor(modelItem => item.Title)
             </h1>
             <p>
+                Published: @item.CreatedAt.ToString("yyyy-MM-dd") by @Html.DisplayFor(modelItem => item.CreatedBy)
+            <p>
                 @Html.DisplayFor(modelItem => item.Content)
             </p>
 
             <div>
-                <p>
-                    Greetings from @Html.DisplayFor(modelItem => item.CreatedBy)
-                </p>
+
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
