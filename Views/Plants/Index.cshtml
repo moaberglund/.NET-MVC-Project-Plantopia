@@ -4,11 +4,14 @@
     ViewData["Title"] = "Our Plants";
 }
 
-<h1>Our Plants</h1>
+<h1 style="margin: 1em 0;">Our Plants</h1>
+@if (User.Identity.IsAuthenticated)
+{
+    <p>
+        <a class="button" asp-action="Create">Create New</a>
+    </p>
+}
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 @foreach (var item in Model)
 {
     <article style="display: flex; gap: 2em; margin-bottom: 20px; padding: 2em; background-color:#EFEFEF;">
@@ -41,14 +44,16 @@
             <p>
                 <strong> Amount in store: </strong>@Html.DisplayFor(modelItem => item.Amount) plants
             </p>
-
-            <div>
+            @if (User.Identity.IsAuthenticated)
+            {
                 <div>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <div>
+                        <a class="button" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+
+                        <a class="button" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </div>
                 </div>
-            </div>
+            }
 
         </div>
     </article>
