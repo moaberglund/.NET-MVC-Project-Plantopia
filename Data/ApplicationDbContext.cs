@@ -12,4 +12,6 @@ public class ApplicationDbContext : IdentityDbContext
     }
 
     public DbSet<NewsModel> News { get; set; }
+
+    public DbSet<PlantModel> Plants { get; set; }
 }
