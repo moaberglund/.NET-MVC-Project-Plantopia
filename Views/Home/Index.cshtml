@@ -18,13 +18,40 @@
 </div>
 
 <div style="text-align: center;">
-    <h2>Plants are cheaper than therapy.</h2>
+    <h2>Plants are cheaper than therapy!</h2>
 </div>
+
+<article style="margin-top: 3em;">
+    <div>
+        <iframe style="max-width: 98%;"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d708.2196169646658!2d-6.24904476245194!3d53.340439480380056!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48670f1a4e0623eb%3A0x71d58a9e3afda166!2s25%20Merrion%20Square%20S%2C%20Dublin%202%2C%20Irland!5e0!3m2!1ssv!2ses!4v1742573471170!5m2!1ssv!2ses"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div style="line-height: 1em;">
+        <h1 style="font-size: 2em;">Come visit us at:</h1>
+
+        <p>25 Merrion Square S</p>
+        <p>Dublin 2, Ireland</p>
+
+
+        <h4>Opening hours</h4>
+        <p>Monday - Friday: 9:00 - 18:00</p>
+        <p>Saturday: 10:00 - 16:00</p>
+        <p>Sunday: Closed</p>
+
+        <h4>Or reach us on:</h4>
+        <p><a href="mailto:info@plantopia.com">info@plantopia.com</a></p>
+        <p><a href="tel:+353123456789">+353 123 456 789</a></p>
+
+    </div>
+
+</article>
 
 @{
     var user = await UserManager.GetUserAsync(User);
 
-    if(user != null && user.FirstName != null && user.LastName != null)
+    if (user != null && user.FirstName != null && user.LastName != null)
     {
         var firstName = user.FirstName;
         var lastName = user.LastName;
