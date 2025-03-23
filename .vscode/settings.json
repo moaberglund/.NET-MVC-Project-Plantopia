@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/84fc93f0-89ed-4df0-be4b-b40ad9593225/resourceGroups/mobe2305/providers/Microsoft.Web/sites/plantopia-mobe",
+    "appService.deploySubpath": "bin\\Release\\net9.0\\publish"
+}
